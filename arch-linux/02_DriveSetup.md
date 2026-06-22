@@ -85,14 +85,15 @@ The following mount options below will be used:
 | `subvol=<name>`   | Selects which subvolume to mount             |
 
 ```bash
-mount --mkdir -o noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=root      /dev/mapper/encrypted /mnt
-mount --mkdir -o noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=tmp       /dev/mapper/encrypted /mnt/tmp
-mount --mkdir -o noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=var_log   /dev/mapper/encrypted /mnt/var/log
-mount --mkdir -o noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=var_cache /dev/mapper/encrypted /mnt/var/cache
-mount --mkdir -o noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=var_tmp   /dev/mapper/encrypted /mnt/var/tmp
-mount --mkdir -o noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=swap      /dev/mapper/encrypted /mnt/swap
-mount --mkdir -o noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=opt       /dev/mapper/encrypted /mnt/opt
-mount --mkdir -o noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=snapshots /dev/mapper/encrypted /mnt/.snapshots
+mount --mkdir -o noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=@          /dev/mapper/encrypted /mnt
+mount --mkdir -o noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=@home      /dev/mapper/encrypted /mnt/home
+mount --mkdir -o noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=@var_log   /dev/mapper/encrypted /mnt/var/log
+mount --mkdir -o noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=@var_cache /dev/mapper/encrypted /mnt/var/cache
+mount --mkdir -o noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=@var_tmp   /dev/mapper/encrypted /mnt/var/tmp
+mount --mkdir -o noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=@tmp       /dev/mapper/encrypted /mnt/tmp
+mount --mkdir -o noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=@snapshots /dev/mapper/encrypted /mnt/.snapshots
+mount --mkdir -o noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=@swap      /dev/mapper/encrypted /mnt/swap
+mount --mkdir -o noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=@opt       /dev/mapper/encrypted /mnt/opt
 
 mount --mkdir -o noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=docker    /dev/mapper/encrypted /mnt/var/lib/docker
 mount --mkdir -o noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,subvol=libvirt   /dev/mapper/encrypted /mnt/var/lib/libvirt
