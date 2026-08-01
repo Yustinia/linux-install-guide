@@ -1,6 +1,6 @@
 # NixOS Installation Guide
 
-> Covers flakes, modular config, btrfs subvolumes, LUKS encryption, zram, and NetworkManager with iwd.
+> Covers flakes, unified config, btrfs subvolumes, LUKS encryption, zram, and NetworkManager with iwd.
 
 ---
 
@@ -24,11 +24,12 @@ Anything you do in the live environment is a one-time physical setup. Everything
 ├── flake.nix
 └── hosts/
     └── nixos/
-        ├── default.nix      # system configuration
-        └── hardware.nix     # boot, LUKS, filesystems, kernel
+        ├── default.nix         # imports
+        ├── configuration.nix   # main configuration
+        └── hardware.nix        # boot, LUKS, filesystems, kernel
 ```
 
-`hardware.nix` holds everything tied to the physical machine — partition UUIDs, LUKS setup, bootloader, kernel modules. `default.nix` holds everything else. This split matters when you add a second machine later: only `hardware.nix` needs to differ.
+`hardware.nix` holds everything tied to the physical machine — partition UUIDs, LUKS setup, bootloader, kernel modules. `default.nix` holds imports. `configuration.nix` holds the system configuration.
 
 ---
 
@@ -153,16 +154,21 @@ The workflow is:
 
 ```bash
 mv /mnt/etc/nixos/hardware-configuration.nix /mnt/etc/nixos/hosts/nixos/hardware.nix
-mv /mnt/etc/nixos/configuration.nix /mnt/etc/nixos/hosts/nixos/default.nix
+mv /mnt/etc/nixos/configuration.nix /mnt/etc/nixos/hosts/nixos/configuration.nix
 ```
 
 2. In `hardware.nix` — do not remove the auto-generated content. Add your LUKS, bootloader, and kernel declarations on top of what is already there. Those values represent what was detected for your specific hardware.
 
-3. In `default.nix` — strip all generated option declarations and comments, leaving only the module skeleton:
+3. Create a `default.nix` at `/mnt/etc/nixos/hosts/default.nix`, dedicated for the imports.
 
 ```nix
 { config, lib, pkgs, ... }:
 {
+    nix.settings.experimental-features = [
+            "nix-command"
+            "flakes"
+    ]
+
   imports = [
     ./hardware.nix
   ];
