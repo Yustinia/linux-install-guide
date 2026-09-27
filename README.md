@@ -1,6 +1,6 @@
 # 🐧 Linux Install Guides
 
-> Personal installation guides for manually setting up Linux from scratch —
+> Personal installation guides for manually setting up Arch Linux, Artix Linux, and NixOS from scratch —
 > written and maintained for my own use case.
 
 ---
