@@ -7,7 +7,7 @@
 ## IWD Backend for NM
 
 ```ini
-# /etc/NetworkManager/conf.d/iwd.con
+# /etc/NetworkManager/conf.d/iwd.conf
 [device]
 wifi.backend=iwd
 
