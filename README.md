@@ -51,9 +51,17 @@ A manual Artix Linux installation using dinit as the init system — a systemd-f
 
 ---
 
+### [NixOS](./nixos/nixos-full.md)
+
+> `flakes` · `btrfs subvolumes` · `LUKS encryption` · `swapfile` · `zram` · `GRUB`
+
+A single-file NixOS installation guide — imperative one-time setup in the live environment, then everything else declared in a flake. Uses `nixos-install` / `nixos-rebuild` and `iwd` + `NetworkManager` for networking.
+
+---
+
 ## ⚙️ Shared Setup
 
-Both guides share the same general philosophy and disk layout strategy:
+All three guides share the same general philosophy and disk layout strategy:
 
 - **Btrfs subvolumes** instead of separate partitions for `/home`, `/var/log`, `/var/cache`, etc.
 - **Unified storage pool** — no need to pre-allocate fixed partition sizes per directory
